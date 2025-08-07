@@ -49,7 +49,7 @@ app.post('/addcategory', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = app;
 
 
 app.listen(3000, () => {
