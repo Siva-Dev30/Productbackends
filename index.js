@@ -23,7 +23,7 @@ app.use(cors({
 
 // Default route
 app.get('/', (req, res) => {
-  res.send('Welcome to Node.js backend');
+  res.send('Welcome to Node.js backends');
 });
 
 // ✅ Get categories from MySQL
