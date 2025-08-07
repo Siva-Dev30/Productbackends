@@ -36,20 +36,27 @@ app.get('/category', (req, res) => {
 });
 
 // ✅ Add category to MySQL
+// ✅ Add category to MySQL
 app.post('/addcategory', (req, res) => {
   const { name } = req.body;
-  const sql = "INSERT INTO category (name, status) VALUES (?, 'Active')";
 
+  if (!name) {
+    return res.status(400).json({ message: "Category name is required" });
+  }
+
+  const sql = "CALL AddCategory(?)";
   db.query(sql, [name], (err, result) => {
     if (err) {
-      console.error(err);
-      return res.status(500).json({ message: "Database error" });
+      if (err.sqlState === '45000') {
+        return res.status(409).json({ message: err.message }); // duplicate error from procedure
+      }
+      return res.status(500).json({ message: err.message });
     }
-    res.json({ message: "Category added", id: result.insertId });
+
+    res.status(201).json({ name });
   });
 });
 
-module.exports = app;
 
 
 app.listen(3000, () => {
