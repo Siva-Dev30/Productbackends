@@ -48,15 +48,14 @@ app.post('/addcategory', (req, res) => {
   db.query(sql, [name], (err, result) => {
     if (err) {
       if (err.sqlState === '45000') {
-        return res.status(409).json({ message: err.message }); // duplicate error from procedure
+        return res.status(409).json({ message: err.message }); // duplicate
       }
-      return res.status(500).json({ message: err.message });
+      return res.status(500).json({ message: err.message });   // other errors
     }
 
     res.status(201).json({ name });
   });
 });
-
 
 
 app.listen(3000, () => {
