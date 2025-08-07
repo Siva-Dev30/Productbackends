@@ -8,12 +8,12 @@ const db = mysql.createPool({
   database: "new_schema" // your database name
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error("❌ MySQL connection error:", err);
-  } else {
-    console.log("✅ Connected to MySQL database");
-  }
-});
+// db.connect((err) => {
+//   if (err) {
+//     console.error("❌ MySQL connection error:", err);
+//   } else {
+//     console.log("✅ Connected to MySQL database");
+//   }
+// });
 
 module.exports = db;
