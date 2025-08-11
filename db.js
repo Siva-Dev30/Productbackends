@@ -41,7 +41,6 @@ const db = mysql.createPool({
 
 module.exports = db;
 
-
 connection.connect(err => {
   if (err) {
     console.error('Database connection failed:', err.stack);
