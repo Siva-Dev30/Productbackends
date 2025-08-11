@@ -16,7 +16,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: "http://localhost:5173", // your React app
+  origin: ["http://localhost:5173", "https://productbackends-y06d.onrender.com/"],
   methods: ["GET", "POST"],
   credentials: false
 }));
@@ -56,8 +56,9 @@ app.post('/addcategory', (req, res) => {
     res.status(201).json({ name });
   });
 });
-
-
-app.listen(3000, () => {
-  console.log("Server is running at http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
+
